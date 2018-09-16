@@ -1,9 +1,10 @@
 {
-  "name": "Redux-Response-Middleware",
+  "name": "redux-response-middleware",
   "version": "1.0.0",
   "description": "Single Redux MIddleware with Request/Success/Failure Pattern",
   "main": "./src/index.js",
   "scripts": {
+    "build": "./node_modules/.bin/babel index.js --out-file src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/Christianmo/Redux-Response-Middleware/issues"
   },
-  "homepage": "https://github.com/Christianmo/Redux-Response-Middleware#readme"
+  "homepage": "https://github.com/Christianmo/Redux-Response-Middleware#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-template-literals": "^7.0.0",
+    "@babel/preset-env": "^7.0.0"
+  }
 }
