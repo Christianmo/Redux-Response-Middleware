@@ -24,7 +24,7 @@ export default createStore(reducers, applyMiddleware(responseMiddleware()));
 
 ```
 
-If the action has a `service` property you will receive corresponding props: data, error, loading, if these properties doesn't exist the action will work as usually .
+If the action has a `service` property you will receive corresponding props: data, error, loading, if these properties doesn't exist the action going to work as usually .
 
 ```javascript
 import { GET_POSTS, ADD_POST } from '@constants/actionNames';
