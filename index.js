@@ -22,6 +22,11 @@ function responseMiddleware() {
         });
 
         action[service].then((resp) => {
+          if (resp.status < 200 || resp.status > 299) {
+            const error = new Errir(resp);
+            return error;
+          }
+
           next({
             ...action,
             payload: { ...payload, [data]: action.response(resp) },
