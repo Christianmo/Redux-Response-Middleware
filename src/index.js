@@ -6,14 +6,20 @@ function responseMiddleware() {
   const service = 'service';
   const success = 'success';
   const failure = 'failure';
+  const response = 'response';
+  const initialState = 'initialState';
+
+  const hasProperty = property => Object.prototype.hasOwnProperty.call(action, property);
+
   return () => next => action => {
-    if (Object.prototype.hasOwnProperty.call(action, service)) {
+    if (hasProperty(service)) {
       if (typeof action[service] === 'object') {
         const data = "".concat(action.target, "Data");
         const error = "".concat(action.target, "Error");
         const loading = "".concat(action.target, "Loading");
+        const initialData = hasProperty(initialData) ? action[initialState] : false;
         const payload = {
-          [data]: false,
+          [data]: initialData,
           [error]: false,
           [loading]: false
         };
@@ -31,23 +37,17 @@ function responseMiddleware() {
 
           next(_objectSpread({}, action, {
             payload: _objectSpread({}, payload, {
-              [data]: action.response(resp)
+              [data]: action[response](resp)
             })
           }));
-
-          if (Object.prototype.hasOwnProperty.call(action, success)) {
-            action[success]();
-          }
+          if (hasProperty(success)) action[success]();
         }).catch(err => {
           next(_objectSpread({}, action, {
             payload: _objectSpread({}, payload, {
               [error]: err
             })
           }));
-
-          if (Object.prototype.hasOwnProperty.call(action, failure)) {
-            action[failure]();
-          }
+          if (hasProperty(failure)) action[failure]();
         });
       } else {
         throw new Error('action.service should be a promise');
