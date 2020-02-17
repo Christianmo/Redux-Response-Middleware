@@ -59,5 +59,6 @@ Option | Type | Description
 ------ | ---- | ------- 
 service | Promise | You should send a promise, for example `axios.get('posts')`
 target | String | This is important to get good prop names, for example if `target: 'post'` you get props: postData, postError, postLoading
+initialState | * | The initial value ([], {}, '', etc)
 success | Func | The callback when the response is success
 failure | Func | The callback when you get error
