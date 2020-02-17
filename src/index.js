@@ -8,7 +8,6 @@ function responseMiddleware() {
   const failure = 'failure';
   const response = 'response';
   const initialState = 'initialState';
-  
   return () => next => action => {
     const hasProperty = property => Object.prototype.hasOwnProperty.call(action, property);
 
