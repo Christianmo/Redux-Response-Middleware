@@ -5,16 +5,17 @@ function responseMiddleware() {
   const response = 'response';
   const initialState = 'initialState';
 
-  const hasProperty = property => Object.prototype.hasOwnProperty.call(action, property);
-
+  
   return () => next => (action) => {
+    const hasProperty = property => Object.prototype.hasOwnProperty.call(action, property);
+
     if (hasProperty(service)) {
       if (typeof (action[service]) === 'object') {
         const data = `${action.target}Data`;
         const error = `${action.target}Error`;
         const loading = `${action.target}Loading`;
 
-        const initialData = hasProperty(initialData) ? action[initialState] : false;
+        const initialData = hasProperty(initialState) ? action[initialState] : false;
 
         const payload = {
           [data]: initialData,

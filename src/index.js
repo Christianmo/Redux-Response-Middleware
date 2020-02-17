@@ -8,16 +8,16 @@ function responseMiddleware() {
   const failure = 'failure';
   const response = 'response';
   const initialState = 'initialState';
-
-  const hasProperty = property => Object.prototype.hasOwnProperty.call(action, property);
-
+  
   return () => next => action => {
+    const hasProperty = property => Object.prototype.hasOwnProperty.call(action, property);
+
     if (hasProperty(service)) {
       if (typeof action[service] === 'object') {
         const data = "".concat(action.target, "Data");
         const error = "".concat(action.target, "Error");
         const loading = "".concat(action.target, "Loading");
-        const initialData = hasProperty(initialData) ? action[initialState] : false;
+        const initialData = hasProperty(initialState) ? action[initialState] : false;
         const payload = {
           [data]: initialData,
           [error]: false,
