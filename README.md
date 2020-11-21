@@ -33,6 +33,14 @@ import postServices from '@services/postServices';
 const getPostsTarget = 'posts';
 const addPostsTarget = 'post';
 
+const success = (response) => {
+  console.log('success:', response);
+};
+
+const failure = (error) => {
+  console.log('error', error);
+};
+
 const postActions = {
   getPosts: (success, failure) => ({
     type: GET_POSTS,
@@ -65,5 +73,5 @@ target | String | This is important to get good prop names, for example if `targ
 initialState | * | The initial value ([], {}, '', etc)
 response | Func (optional) | is a callback to handle the response route, for example if you have `data: { data: { title } } ` you could  use `resp => resp.data.data`, so that you can get in your redux state `postData: { title }` instead of `postData: data: { data: { title } }`.
 Error | Func (options) | Same as response option, but to handle errors.
-success | Func | The callback when the response is success
-failure | Func | The callback when you get error
+success | Func (response) | The callback when the response is success.
+failure | Func (error) | The callback when you get error
