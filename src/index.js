@@ -41,14 +41,14 @@ function responseMiddleware() {
               [data]: action.response ? action[response](resp) : resp
             })
           }));
-          if (hasProperty(success)) action[success]();
+          if (hasProperty(success)) action[success](resp);
         }).catch(err => {
           next(_objectSpread(_objectSpread({}, action), {}, {
             payload: _objectSpread(_objectSpread({}, payload), {}, {
               [error]: action.error ? action.error(err) : err
             })
           }));
-          if (hasProperty(failure)) action[failure]();
+          if (hasProperty(failure)) action[failure](err);
         });
       } else {
         throw new Error("action.service should be a promise");
