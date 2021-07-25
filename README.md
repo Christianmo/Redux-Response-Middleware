@@ -72,6 +72,6 @@ service | Promise | You should send a promise, for example `axios.get('posts')`.
 target | String | This is important to get good prop names, for example if `target: 'post'` you get props: postData, postError, postLoading.
 initialState | * | The initial value ([], {}, '', etc)
 response | Func (optional) | is a callback to handle the response route, for example if you have `data: { data: { title } } ` you could  use `resp => resp.data.data`, so that you can get in your redux state `postData: { title }` instead of `postData: data: { data: { title } }`.
-Error | Func (options) | Same as response option, but to handle errors.
+error | Func (options) | Same as response option, but to handle errors.
 success | Func (response) | The callback when the response is success.
 failure | Func (error) | The callback when you get error
