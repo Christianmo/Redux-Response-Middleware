@@ -1,3 +1,5 @@
+import { Middleware } from 'redux';
+
 function responseMiddleware() {
   const service = "service";
   const success = "success";
@@ -5,8 +7,8 @@ function responseMiddleware() {
   const response = "response";
   const initialState = "initialState";
 
-  return () => next => action => {
-    const hasProperty = property =>
+  const middleware: Middleware = () => next => action => {
+    const hasProperty = (property: any) =>
       Object.prototype.hasOwnProperty.call(action, property);
 
     if (hasProperty(service)) {
@@ -31,10 +33,9 @@ function responseMiddleware() {
         });
 
         action[service]
-          .then(resp => {
+          .then((resp: any) => {
             if (resp.status < 200 || resp.status > 299) {
-              const error = new Error();
-              error.error = resp;
+              const error: Error = new Error();
               throw error;
             }
 
@@ -48,7 +49,7 @@ function responseMiddleware() {
 
             if (hasProperty(success)) action[success](resp);
           })
-          .catch(err => {
+          .catch((err: Error) => {
             next({
               ...action,
               payload: {
@@ -66,6 +67,8 @@ function responseMiddleware() {
       next(action);
     }
   };
+
+  return middleware;
 }
 
 export default responseMiddleware;
