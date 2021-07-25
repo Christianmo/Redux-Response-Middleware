@@ -46,7 +46,7 @@ function responseMiddleware() {
               }
             });
 
-            if (hasProperty(success)) action[success]();
+            if (hasProperty(success)) action[success](resp);
           })
           .catch(err => {
             next({
@@ -57,7 +57,7 @@ function responseMiddleware() {
               }
             });
 
-            if (hasProperty(failure)) action[failure]();
+            if (hasProperty(failure)) action[failure](err);
           });
       } else {
         throw new Error("action.service should be a promise");
